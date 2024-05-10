@@ -1,21 +1,25 @@
 import React from "react";
 
-function NewTaskForm() {
+function CategoryFilter({ categories, selectedCategory, onSelectCategory }) {
+  const categoryButtons = categories.map((category) => {
+    const className = category === selectedCategory ? "selected" : null;
+    return (
+      <button
+        key={category}
+        className={className}
+        onClick={() => onSelectCategory(category)}
+      >
+        {category}
+      </button>
+    );
+  });
   return (
-    <form className="new-task-form">
-      <label>
-        Details
-        <input type="text" name="text" />
-      </label>
-      <label>
-        Category
-        <select name="category">
-          {/* render <option> elements for each category here */}
-        </select>
-      </label>
-      <input type="submit" value="Add task" />
-    </form>
+    <div className="categories">
+      <h5>Category filters</h5>
+      {/* render <button> elements for each category here */}
+      {categoryButtons}
+    </div>
   );
 }
 
-export default NewTaskForm;
+export default CategoryFilter;
